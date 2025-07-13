@@ -32,7 +32,7 @@ def main():
             case '1':
                 sourceOfFunds()
             case '2':
-                print("a")
+                fplanner()
             case '3':
                 exit()
 
@@ -49,6 +49,7 @@ def sourceOfFunds():
           |            5. Back to Main Menu              |
           +----------------------------------------------+
          """)
+    input("Choose an Option = > ")
     
 def fplanner():
     print(r"""
@@ -57,11 +58,13 @@ def fplanner():
           +----------------------------------------------+
           | Menu :                                       |
           |            1. Add A Plan                     |
-          |            2. Edit Source of Fund            |
-          |            3. Delete Source of Fund          |
-          |            4. Back to Main Menu              |
+          |            2. View Plan Priority             |
+          |            3. Edit Plan                      |
+          |            4. Delete Plan                    |
+          |            5. Back to Main Menu              |
           +----------------------------------------------+
          """)
+    input("Choose an Option = > ")
     
 
 if __name__ == "__main__":
