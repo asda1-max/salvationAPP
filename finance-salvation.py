@@ -1,11 +1,13 @@
 import os
+import fundsHandler
 
 def main():
     while True:
         os.system('cls' if os.name == 'nt' else 'clear')
+
+        # Start of Menu
         print(r""" 
          
-
 ███████╗ █████╗ ██╗    ██╗   ██╗ █████╗ ████████╗██╗ ██████╗ ███╗   ██╗
 ██╔════╝██╔══██╗██║    ██║   ██║██╔══██╗╚══██╔══╝██║██╔═══██╗████╗  ██║
 ███████╗███████║██║    ██║   ██║███████║   ██║   ██║██║   ██║██╔██╗ ██║
@@ -35,6 +37,7 @@ def main():
                 fplanner()
             case '3':
                 exit()
+            #End of menu
 
 def sourceOfFunds():
     print(r"""
@@ -49,7 +52,19 @@ def sourceOfFunds():
           |            5. Back to Main Menu              |
           +----------------------------------------------+
          """)
-    input("Choose an Option = > ")
+    pilih = input("Choose an Option = > ")
+    match pilih:
+        case '1':
+            fundsHandler.addfunds()
+            pause()
+        case '2':
+            print("a")
+        case '3':
+            print("a")
+        case '4':
+            print("a")
+        case '5':
+            print("a")
     
 def fplanner():
     print(r"""
@@ -64,8 +79,21 @@ def fplanner():
           |            5. Back to Main Menu              |
           +----------------------------------------------+
          """)
-    input("Choose an Option = > ")
+    pilih = input("Choose an Option = > ")
+    match pilih:
+        case '1':
+            print("a")
+        case '2':
+            print("a")
+        case '3':
+            print("a")
+        case '4':
+            print("a")
+        case '5':
+            print("a")
     
+def pause():
+    input("\npress space to continue")
 
 if __name__ == "__main__":
     main()
