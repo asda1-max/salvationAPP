@@ -55,16 +55,22 @@ def sourceOfFunds():
     pilih = input("Choose an Option = > ")
     match pilih:
         case '1':
+            print( "\n--You choosed Add Funds Menu --\n")
             fundsHandler.addfunds()
             pause()
         case '2':
-            print("a")
+            print( "\n--You choosed Add Source of Fund Menu --\n")
+            fundsHandler.addSoF()
+            pause()
         case '3':
+            print( "\n--You choosed Add Funds Menu --\n")
             print("a")
         case '4':
+            print( "\n--You choosed Add Funds Menu --\n")
             print("a")
         case '5':
-            print("a")
+            print( "\n--You choosed Add Funds Menu --\n")
+            print("a") 
     
 def fplanner():
     print(r"""
