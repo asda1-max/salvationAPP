@@ -27,6 +27,7 @@ def main():
           |             2. Finance Planner               |
           |             3. Exit                          |
           +----------------------------------------------+
+              
          """)
         pilih = input("Choose an Option = >")
         os.system('cls' if os.name == 'nt' else 'clear')
@@ -45,11 +46,11 @@ def sourceOfFunds():
           | Source of Funds Menu :                       | 
           +----------------------------------------------+
           | Menu :                                       |
-          |            1. Add Funds                      |
+          |            1. Edit Funds                     |
           |            2. Add Source of Fund             |
           |            3. Edit Source of Fund            |
           |            4. Delete Source of Fund          |
-          |            5. Back to Main Menu              |
+          |            5. Back to Main Menu              |      
           +----------------------------------------------+
          """)
     pilih = input("Choose an Option = > ")
