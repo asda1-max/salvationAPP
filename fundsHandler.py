@@ -1,10 +1,10 @@
 import json
+import os
 
 dataSoF = {}
 
 def addfunds():
-    loadSoFData()
-    viewData()
+    viewAllData()
     findData = False
     pilihan = int(input("Source of Fund Type ID : "))
 
@@ -19,6 +19,8 @@ def addfunds():
 
 def amountEdit(id):
     while True:
+        os.system('cls' if os.name == 'nt' else 'clear')
+        viewData(id)
         print("You Are Editting Funds of : "+dataSoF[id]["SoFName"])
         print(r"""
           +----------------------------------------------+
@@ -30,7 +32,7 @@ def amountEdit(id):
           |            3. Auto add Rp100.000             |
           |            4. Auto Decrease Rp100.000        |
           |            5. Reset to 0                     | 
-          |            5. Exit                           | 
+          |            6. Exit                           | 
           +----------------------------------------------+
         """)
         pilihan = int(input("Choose => "))
@@ -48,17 +50,46 @@ def amountEdit(id):
                 while True :
                     try :
                         amount = int(input("Amount Decrased : "))
+                        if dataSoF[id]["currentFund"] < amount :
+                            print("Your current fund is lower than decreased amount")
+                            break
                         dataSoF[id]["currentFund"] -= amount
                         saveSoFData()
                         break 
                     except ValueError:
                         print("Invalid Value")
+            case 3:
+                try :
+                    amount = 100000
+                    dataSoF[id]["currentFund"] += amount
+                    saveSoFData()
+                     
+                except ValueError:
+                    print("Invalid Value")
+            case 4:
+                try :
+                    amount = 100000
+                    if dataSoF[id]["currentFund"] < amount :
+                        print("Your current fund is lower than decreased amount")
+                    else :        
+                        dataSoF[id]["currentFund"] -= amount
+                        saveSoFData()
+                     
+                except ValueError:
+                    print("Invalid Value")
+            case 5:
+                try:
+                    dataSoF[id]["currentFund"] = 0
+                    saveSoFData() 
+                    input("\nYour funds successfully reduced to 0\n\nPress space to continue...")
+                except ValueError:
+                    print("Invalid Value")
+                    
+            case 6:
+                break
 
     
-
-
 def addSoF():
-    loadSoFData()
     idSearcher = len(dataSoF)
     SoF = ["Debit Card", "E-Wallet", "Money", "Credit Card", "Pay Pal"]
     SoFName = input("Source of Fund Name : ")
@@ -104,10 +135,13 @@ def loadSoFData():
     except :
         print("\nFailed loading data files, Creating a new one...\n")
 
-def viewData():
+def viewAllData():
     for i, item in  enumerate(dataSoF,1):
-        w = 70
         print("->Source of Fund #" , i)
+        viewData(item)
+
+def viewData(item):
+        w = 70
         print("+-------------------------------------------------------------------+")
         
         current_name_str = "| Source of Fund Name : " + str(dataSoF[item]["SoFName"])
@@ -115,7 +149,8 @@ def viewData():
         current_name_str = current_name_str + " " *right + "|"
         print(current_name_str)
 
-        current_fund_str = "CURRENT FUND : RP" + str(dataSoF[item]["currentFund"])
+        fundonrupiah = "{:,}".format(dataSoF[item]["currentFund"]).replace(",", ".")
+        current_fund_str = "CURRENT FUND : RP" + fundonrupiah
         left = (w - len(current_fund_str)) // 2 - 2
         right = w - len(current_fund_str) - left -3
         current_fund_str = "+" + "-" * left + f"\033[91m{current_fund_str}\033[0m" + "-" * right + "+"

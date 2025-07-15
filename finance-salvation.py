@@ -3,6 +3,7 @@ import fundsHandler
 
 def main():
     while True:
+        fundsHandler.loadSoFData()
         os.system('cls' if os.name == 'nt' else 'clear')
 
         # Start of Menu
@@ -50,10 +51,12 @@ def sourceOfFunds():
           |            2. Add Source of Fund             |
           |            3. Edit Source of Fund            |
           |            4. Delete Source of Fund          |
-          |            5. Back to Main Menu              |      
+          |            5. View Source of Fund            |
+          |            6. Back to Main Menu              |      
           +----------------------------------------------+
          """)
     pilih = input("Choose an Option = > ")
+    os.system('cls' if os.name == 'nt' else 'clear')
     match pilih:
         case '1':
             print( "\n--You choosed Add Funds Menu --\n")
@@ -70,6 +73,10 @@ def sourceOfFunds():
             print( "\n--You choosed Add Funds Menu --\n")
             print("a")
         case '5':
+            print( "\n--You choosed View Source of Fund Menu --\n")
+            fundsHandler.viewAllData()
+            pause()
+        case '6':
             print( "\n--You choosed Add Funds Menu --\n")
             print("a") 
     
