@@ -74,7 +74,7 @@ def editSoF(id):
 def deleteSoF():
     viewAllData()
     try:
-        deleteID = input("ID to be deleted : ")
+        deleteID = str(input("ID to be deleted : "))
         for i in dataSoF:
             if deleteID == i:
                 while True :

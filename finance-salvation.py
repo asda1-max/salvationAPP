@@ -6,7 +6,6 @@ def main():
     while True:
         fundsHandler.loadSoFData()
         financePlanner.loadData()
-        pause()
         os.system('cls' if os.name == 'nt' else 'clear')
 
         print(r""" 
@@ -48,6 +47,7 @@ def main():
 
 def sourceOfFunds():
     while True :
+        os.system('cls' if os.name == 'nt' else 'clear')
         print(r"""
           +----------------------------------------------+
           | Source of Funds Menu :                       | 
@@ -90,6 +90,7 @@ def sourceOfFunds():
     
 def fplanner():
     while True:
+        os.system('cls' if os.name == 'nt' else 'clear')
         print(r"""
           +----------------------------------------------+
           | Finance Planner menu :                       | 
@@ -103,15 +104,17 @@ def fplanner():
           +----------------------------------------------+
         """)
         pilih = input("Choose an Option = > ")
+        os.system('cls' if os.name == 'nt' else 'clear')
         match pilih:
             case '1':
                 financePlanner.addplan()
             case '2':
-                print("a")
+                financePlanner.dataPriorityD()
+                pause()
             case '3':
                 print("a")
             case '4':
-                print("a")
+                financePlanner.dataPriorityD()
             case '5':
                 break
             case _ :

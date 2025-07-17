@@ -56,7 +56,6 @@ def loadData():
             planData = json.load(file)
     except :
         print("Cant open Data File")
-    dataPriorityD()
 
 def dataPriorityD():
     i = 0
@@ -70,24 +69,25 @@ def dataPriorityD():
 
         if curPrice <= 100000:
             level = "Cheap"
-            score = float(5 - curPrice * 0.0000002)
+            score = float(5 - curPrice * 0.00000002)
         elif 100000 < curPrice <= 500000:
             level = "Medium"
-            score = float(4 - curPrice * 0.0000002)
+            score = float(4 - curPrice * 0.00000002)
         elif 500000 < curPrice <= 1000000:
             level = "High"
-            score = float(3 - curPrice * 0.0000002)
+            score = float(3 - curPrice * 0.00000002)
         elif 1000000 < curPrice <= 5000000:
             level = "Very High"
-            score = float(2 - curPrice * 0.0000002)
+            score = float(2 - curPrice * 0.00000002)
         elif 5000000 < curPrice:
             level = "Extremely High"
-            score = float(1 - curPrice * 0.0000002)
+            score = float(1 - curPrice * 0.00000002)
 
         normalizedPriceScore = float(score / 5.0)
         finalscore = float((0.7 * normalizedValueOfPlan) +  (0.3 * normalizedPriceScore))
 
         sortedArray.append({"planName" : planData[id]["planName"],
+        "planId" : id,
         "planDesc" : planData[id]["planDesc"],
         "planPrice" : planData[id]["planPrice"],
         "planPrioritize" : planData[id]["planPrioritize"],
@@ -97,22 +97,48 @@ def dataPriorityD():
         })
 
     sortedArray.sort(key=lambda x: x["finalScore"], reverse=True)
-    print("\n{:<3} {:<20} {:<10} {:<12} {:<10} {:<15} {:<10} {:<10}".format(
-        "No", "Plan Name", "Price", "Priority", "Outcome", "Price Level", "Score", "Description"
+    # Print header with black foreground and white background
+    print("\033[30;47m\n{:<3} {:<3} {:<30} {:<15} {:<12} {:<10} {:<15} {:<10} {:<35}\033[0m".format(
+        "no","ID", "Plan Name", "Price", "Priority", "Outcome", "Price Level", "Score", "Description                        "
     ))
-    print("-" * 100)
+    print("-" * 141)
     for idx, plan in enumerate(sortedArray, 1):
-        print("{:<3} {:<20} {:<10} {:<12} {:<10} {:<15} {:<10.4f} {:<10}".format(
+        desc = plan['planDesc']
+        desc_lines = [desc[i:i+30] for i in range(0, len(desc), 30)]
+        price_rupiah = f"Rp{int(plan['planPrice']):,}".replace(",", ".")
+        if idx == 1:
+            print("\033[102m", end="")  # Set background color to green
+        if idx == 1:
+            print("{:<3} \033[48;5;208m{:<3}\033[102m {:<30} {:<15} {:<12} {:<10} {:<15} {:<10.6f} {:<35}".format(
             idx,
+            plan['planId'],
             plan['planName'],
-            plan['planPrice'],
+            price_rupiah,
             plan['planPrioritize'],
             plan['planOutcome'],
             plan['planPriceLevel'],
             plan['finalScore'],
-            plan['planDesc'][:30]  # Truncate description for neatness
-        ))
-    print("-" * 100)
+            desc_lines[0]
+            ))
+        else:
+            print("{:<3} \033[103m{:<3}\033[0m {:<30} {:<15} {:<12} {:<10} {:<15} {:<10.6f} {:<35}".format(
+            idx,
+            plan['planId'],
+            plan['planName'],
+            price_rupiah,
+            plan['planPrioritize'],
+            plan['planOutcome'],
+            plan['planPriceLevel'],
+            plan['finalScore'],
+            desc_lines[0]
+            ))
+        if idx == 1:
+            print("\033[0m", end="")   # Reset text color
+        for cont_line in desc_lines[1:]:
+            print("{:<3} {:<3} {:<30} {:<15} {:<12} {:<10} {:<15} {:<10} {:<30}".format(
+                '', '','', '', '', '', '', '', cont_line
+            ))
+    print("-" * 141)
 
 def pause():
     input("Press Enter to Continue...")

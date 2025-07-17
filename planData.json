@@ -16,7 +16,7 @@
     "2": {
         "planName": "gamma",
         "planDesc": "desc 2",
-        "planPrice": 13000000,
+        "planPrice": 12000000,
         "planPrioritize": 10,
         "planOutcome": 10
     },
