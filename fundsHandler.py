@@ -101,7 +101,7 @@ def amountEdit(id):
         print("You Are Editting Funds of : "+dataSoF[id]["SoFName"])
         print(r"""
           +----------------------------------------------+
-          | Source of Funds Menu :                       | 
+          | Funds Edit Menu :                            | 
           +----------------------------------------------+
           | Menu :                                       |
           |            1. Add Funds                      |

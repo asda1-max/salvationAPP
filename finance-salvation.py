@@ -1,9 +1,12 @@
 import os
 import fundsHandler
+import financePlanner
 
 def main():
     while True:
         fundsHandler.loadSoFData()
+        financePlanner.loadData()
+        pause()
         os.system('cls' if os.name == 'nt' else 'clear')
 
         print(r""" 
@@ -86,7 +89,8 @@ def sourceOfFunds():
                     pause()
     
 def fplanner():
-    print(r"""
+    while True:
+        print(r"""
           +----------------------------------------------+
           | Finance Planner menu :                       | 
           +----------------------------------------------+
@@ -97,22 +101,22 @@ def fplanner():
           |            4. Delete Plan                    |
           |            5. Back to Main Menu              |
           +----------------------------------------------+
-         """)
-    pilih = input("Choose an Option = > ")
-    match pilih:
-        case '1':
-            print("a")
-        case '2':
-            print("a")
-        case '3':
-            print("a")
-        case '4':
-            print("a")
-        case '5':
-            print("a")
-        case _ :
-                print("no option found\n")
-                pause()
+        """)
+        pilih = input("Choose an Option = > ")
+        match pilih:
+            case '1':
+                financePlanner.addplan()
+            case '2':
+                print("a")
+            case '3':
+                print("a")
+            case '4':
+                print("a")
+            case '5':
+                break
+            case _ :
+                    print("no option found\n")
+                    pause()
     
 def pause():
     input("\npress space to continue")
