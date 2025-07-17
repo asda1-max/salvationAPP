@@ -17,6 +17,83 @@ def addfunds():
     if findData == False:
         print ("No Such ID \n")
 
+def searchSoF():
+    viewAllData()
+    findData = False
+    pilihan = int(input("Source of Fund Type ID : "))
+
+    for item in dataSoF:
+        if int(item) == pilihan :
+            findData = True
+            editSoF(item)
+            break
+
+    if findData == False:
+        print ("No Such ID \n")
+
+def editSoF(id):
+    while True :
+        print("You Are Editting Funds of : "+dataSoF[id]["SoFName"])
+        print(r"""
+            +----------------------------------------------+
+            | Source of Funds Edit Menu :                  | 
+            +----------------------------------------------+
+            | Menu :                                       |
+            |            1. Edit Name                      |
+            |            2. Edit Owner                     |
+            |            3. Edit Description               |
+            |            4. Save and Exit                  | 
+            |            5. Cancel (not saved)             | 
+            +----------------------------------------------+
+        """)
+        while True:
+            try:
+                pilihan = int(input("Choose >"))
+                break
+            except ValueError:
+                print("Err\n")
+
+        match pilihan:
+            case 1:
+                newline = input("\nchange to :")
+                dataSoF[id]["SoFName"] = newline
+            case 2:
+                newline = input("\nchange to :")
+                dataSoF[id]["ownerSoF"] = newline
+            case 3:
+                newline = input("\nchange to :")
+                dataSoF[id]["detailSoF"] = newline
+            case 4:
+                saveSoFData()
+                break
+            case 5:
+                break
+            case _ :
+                pause()
+
+def deleteSoF():
+    viewAllData()
+    try:
+        deleteID = input("ID to be deleted : ")
+        for i in dataSoF:
+            if deleteID == i:
+                while True :
+                    sure = str(input("are u sure? (y/n)"))
+                    if sure == "y":
+                        dataSoF.pop(i, None)
+                        break
+                    elif sure == "n":
+                        break
+                    else:
+                        print("No option")
+                saveSoFData()
+                break
+            
+
+    except ValueError:
+        print("err val")
+
+
 def amountEdit(id):
     while True:
         os.system('cls' if os.name == 'nt' else 'clear')
@@ -88,9 +165,17 @@ def amountEdit(id):
             case 6:
                 break
 
+            case _ :
+                print("no option found\n")
+                pause()
+
     
 def addSoF():
-    idSearcher = len(dataSoF)
+    # Generate a unique ID by finding the max existing key and adding 1, or start from 1000 if empty
+    if dataSoF:
+        idSearcher = max(int(k) for k in dataSoF.keys()) + 1
+    else:
+        idSearcher = 1000
     SoF = ["Debit Card", "E-Wallet", "Money", "Credit Card", "Pay Pal"]
     SoFName = input("Source of Fund Name : ")
 
@@ -110,7 +195,6 @@ def addSoF():
     ownerSoF = input ("Owner Name    : ")
     detailSoF = input("Other Details : ")
     currentfund = 0
-    idSearcher += 1000
 
     dataSoF[idSearcher] = {
         "SoFName" : SoFName,
@@ -144,7 +228,7 @@ def viewData(item):
         w = 70
         print("+-------------------------------------------------------------------+")
         
-        current_name_str = "| Source of Fund Name : " + str(dataSoF[item]["SoFName"])
+        current_name_str = "| Source of Fund Name   : " + str(dataSoF[item]["SoFName"])
         right = (w-len(current_name_str)) - 2
         current_name_str = current_name_str + " " *right + "|"
         print(current_name_str)
@@ -156,17 +240,17 @@ def viewData(item):
         current_fund_str = "+" + "-" * left + f"\033[91m{current_fund_str}\033[0m" + "-" * right + "+"
         print(current_fund_str)
 
-        current_id_str = "| Source of Fund ID : " + str(item)
+        current_id_str = "| Source of Fund ID     : " + str(item)
         right = (w-len(current_id_str)) - 2
         current_id_str = current_id_str + " " *right + "|"
         print(current_id_str)  
 
-        current_owner_str = "| Source of Fund ID : " + str(dataSoF[item]["ownerSoF"])
+        current_owner_str = "| Source of Fund Owner  : " + str(dataSoF[item]["ownerSoF"])
         right = (w-len(current_owner_str)) - 2
         current_owner_str = current_owner_str + " " *right + "|"
         print(current_owner_str)  
 
-        current_detail_str = "| Source of Fund ID : " + str(dataSoF[item]["detailSoF"])
+        current_detail_str = "| Source of Fund Detail : " + str(dataSoF[item]["detailSoF"])
         right = (w-len(current_detail_str)) - 2
         current_detail_str = current_detail_str + " " *right + "|"
         print(current_detail_str)  
@@ -174,4 +258,5 @@ def viewData(item):
         print("+-------------------------------------------------------------------+\n")
 
 
-    
+def pause():
+    input("\npress space to continue")

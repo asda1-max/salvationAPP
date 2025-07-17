@@ -1,30 +1,9 @@
 {
-    "1000": {
-        "SoFName": "Bank Mandiri",
-        "typeSoFName": "Debit Card",
-        "ownerSoF": "Rakha Taufiqurrahman Faisal Aziz",
-        "detailSoF": "-",
-        "currentFund": 500000
-    },
-    "1001": {
-        "SoFName": "ASu",
-        "typeSoFName": "Pay Pal",
-        "ownerSoF": "Gila",
-        "detailSoF": "gila",
-        "currentFund": 0
-    },
     "1002": {
         "SoFName": "Bank Mandiri",
         "typeSoFName": "Debit Card",
         "ownerSoF": "Rakha Taufiqurrahman Faisal Azizaasdasdad",
         "detailSoF": "-",
         "currentFund": 10000000
-    },
-    "1003": {
-        "SoFName": "ASudasdadasasdas",
-        "typeSoFName": "Pay Pal",
-        "ownerSoF": "Gila",
-        "detailSoF": "gila",
-        "currentFund": 0
     }
 }
