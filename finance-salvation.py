@@ -112,7 +112,7 @@ def fplanner():
                 financePlanner.dataPriorityD()
                 pause()
             case '3':
-                print("a")
+                financePlanner.editPlanData()
             case '4':
                 financePlanner.dataPriorityD()
             case '5':

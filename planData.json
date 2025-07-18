@@ -1,17 +1,17 @@
 {
     "0": {
-        "planName": "asu",
+        "planName": "alsldladl",
         "planDesc": "koe",
         "planPrice": 100000,
         "planPrioritize": 10,
         "planOutcome": 10
     },
     "1": {
-        "planName": "beta",
-        "planDesc": "desc 1",
-        "planPrice": 11000000,
-        "planPrioritize": 10,
-        "planOutcome": 10
+        "planName": "KOntoru",
+        "planDesc": "Halo",
+        "planPrice": 12000000,
+        "planPrioritize": "8",
+        "planOutcome": "4"
     },
     "2": {
         "planName": "gamma",
@@ -65,7 +65,7 @@
     "9": {
         "planName": "kappa",
         "planDesc": "desc 9",
-        "planPrice": 1234567,
+        "planPrice": 1000,
         "planPrioritize": 1,
         "planOutcome": 2
     }

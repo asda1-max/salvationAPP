@@ -1,6 +1,9 @@
 import json
+import os
 
 planData = {}
+globalData = {}
+
 
 def addplan():
 
@@ -96,6 +99,9 @@ def dataPriorityD():
         "finalScore" : finalscore
         })
 
+    global globalData
+    globalData = sortedArray
+
     sortedArray.sort(key=lambda x: x["finalScore"], reverse=True)
     # Print header with black foreground and white background
     print("\033[30;47m\n{:<3} {:<3} {:<30} {:<15} {:<12} {:<10} {:<15} {:<10} {:<35}\033[0m".format(
@@ -138,7 +144,86 @@ def dataPriorityD():
             print("{:<3} {:<3} {:<30} {:<15} {:<12} {:<10} {:<15} {:<10} {:<30}".format(
                 '', '','', '', '', '', '', '', cont_line
             ))
+
+
     print("-" * 141)
+
+def editPlanData():
+    dataPriorityD()
+    isDataFounded = False
+    inputID = str(input("Which ID you want to Edit : "))
+    for id in planData:
+        if inputID == id:
+            editMenu(id)
+            isDataFounded = True
+            break
+
+    if isDataFounded != True:
+        print("No ID has been Found")
+
+def viewOnePlan(id):
+    for plan in globalData:
+        if str(plan['planId']) == str(id):
+            print (plan['planName'])
+            print ("-" * 40)
+            print ("|->Description    : ",plan['planDesc'])
+            print ("|->Price          : ",plan['planPrice'])
+            print ("|->Priority Value : ",plan['planPrioritize'])
+            print ("|->Outcome Value  : ",plan['planOutcome'])
+            print ("-" * 40 + "\n")
+
+            print("Price Level : ", plan["planPriceLevel"])
+            print("Final Score : ",plan["finalScore"])
+
+def editMenu(id):
+        while True:
+            dataPriorityD()
+            os.system('cls' if os.name == 'nt' else 'clear')
+            viewOnePlan(id)
+            print(r"""
+            +----------------------------------------------+
+            | Plan Edit Menu :                             | 
+            +----------------------------------------------+
+            | Menu :                                       |
+            |            1. Edit Plan Name                 |
+            |            2. Edit Price                     |
+            |            3. Edit Description               |
+            |            4. Edit Plan Priority             |
+            |            5. Edit Plan Outcome              |
+            |            6. Exit                           | 
+            +----------------------------------------------+
+            """)
+            inputChoose = str(input("Choose an option = "))
+            match inputChoose :
+                case "1" :
+                    userInput = str(input("Change Plan Name Into :"))
+                    planData[id]["planName"] = userInput
+                case "2" :
+                    userInput = int(input("Change Plan Price Into :"))
+                    planData[id]["planPrice"] = userInput
+                case "3" :
+                    userInput = str(input("Change Plan Description Into :"))
+                    planData[id]["planDesc"] = userInput
+                case "4" :
+                    userInput = str(input("Change Plan Priority Value Into :"))
+                    planData[id]["planPrioritize"] = userInput
+                case "5" :
+                    userInput = str(input("Change Plan Outcome Value Into :"))
+                    planData[id]["planOutcome"] = userInput
+                case "6" :
+                    break
+                case _ :
+                    print("No Option")
+
+            pause()
+            saveData()
+
+
+
+        
+
+    
+
 
 def pause():
     input("Press Enter to Continue...")

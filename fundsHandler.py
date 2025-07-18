@@ -42,34 +42,30 @@ def editSoF(id):
             |            1. Edit Name                      |
             |            2. Edit Owner                     |
             |            3. Edit Description               |
-            |            4. Save and Exit                  | 
-            |            5. Cancel (not saved)             | 
+            |            4. Exit                           | 
             +----------------------------------------------+
         """)
         while True:
             try:
                 pilihan = int(input("Choose >"))
-                break
             except ValueError:
                 print("Err\n")
 
-        match pilihan:
-            case 1:
-                newline = input("\nchange to :")
-                dataSoF[id]["SoFName"] = newline
-            case 2:
-                newline = input("\nchange to :")
-                dataSoF[id]["ownerSoF"] = newline
-            case 3:
-                newline = input("\nchange to :")
-                dataSoF[id]["detailSoF"] = newline
-            case 4:
-                saveSoFData()
-                break
-            case 5:
-                break
-            case _ :
-                pause()
+            match pilihan:
+                case 1:
+                    newline = input("\nchange to :")
+                    dataSoF[id]["SoFName"] = newline
+                case 2:
+                    newline = input("\nchange to :")
+                    dataSoF[id]["ownerSoF"] = newline
+                case 3:
+                    newline = input("\nchange to :")
+                    dataSoF[id]["detailSoF"] = newline
+                case 4:
+                    break
+                case _ :
+                    pause()
+            saveSoFData()
 
 def deleteSoF():
     viewAllData()
