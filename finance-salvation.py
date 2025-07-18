@@ -90,6 +90,7 @@ def sourceOfFunds():
     
 def fplanner():
     while True:
+        financePlanner.dataPriorityD()
         os.system('cls' if os.name == 'nt' else 'clear')
         print(r"""
           +----------------------------------------------+
@@ -109,7 +110,7 @@ def fplanner():
             case '1':
                 financePlanner.addplan()
             case '2':
-                financePlanner.dataPriorityD()
+                financePlanner.viewAllPlanModified()
                 pause()
             case '3':
                 financePlanner.editPlanData()

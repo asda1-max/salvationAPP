@@ -1,9 +1,9 @@
 import json
 import os
+import fundsHandler
 
 planData = {}
-globalData = {}
-
+globalData = []
 
 def addplan():
 
@@ -62,7 +62,8 @@ def loadData():
 
 def dataPriorityD():
     i = 0
-    sortedArray = []
+    global globalData
+    globalData = []
     for id in planData:
         i+=1
         valueOfPlan = float((int(planData[id]["planPrioritize"]) * 0.7) + (int(planData[id]["planOutcome"]) * 0.3))
@@ -88,8 +89,7 @@ def dataPriorityD():
 
         normalizedPriceScore = float(score / 5.0)
         finalscore = float((0.7 * normalizedValueOfPlan) +  (0.3 * normalizedPriceScore))
-
-        sortedArray.append({"planName" : planData[id]["planName"],
+        globalData.append({"planName" : planData[id]["planName"],
         "planId" : id,
         "planDesc" : planData[id]["planDesc"],
         "planPrice" : planData[id]["planPrice"],
@@ -99,23 +99,40 @@ def dataPriorityD():
         "finalScore" : finalscore
         })
 
-    global globalData
-    globalData = sortedArray
+def viewAllPlanModified():
+    
+    totalPrice = totalPricePlan() 
+    totalFunds = fundsHandler.countAllFundAvaiable() 
+    print("Your ALL Current Plan : \n")
+    viewAllPlan()
+    print("\n|-> Your Total Price : Rp {:,}".format(totalPrice).replace(",", "."))
+    print("|-> Your Funds From All Saving : Rp {:,}".format(totalFunds).replace(",", "."))
 
-    sortedArray.sort(key=lambda x: x["finalScore"], reverse=True)
+    if totalFunds < totalPrice:
+        print("\033[37;41m|-> You Are Lacking Money Of : Rp {:,} \033[0m".format((totalPricePlan() - fundsHandler.countAllFundAvaiable()) * -1).replace(",", "."))
+    else :
+        print("\033[37;42m|-> You Have Surplus Money Of : Rp {:,} \033[0m".format((fundsHandler.countAllFundAvaiable() - totalPricePlan())).replace(",", "."))
+
+def totalPricePlan():
+    totalPrice = 0
+    for i in planData:
+        totalPrice += planData[i]["planPrice"]
+    return totalPrice
+
+def viewAllPlan():
+    globalData.sort(key=lambda x: x["finalScore"], reverse=True)
     # Print header with black foreground and white background
-    print("\033[30;47m\n{:<3} {:<3} {:<30} {:<15} {:<12} {:<10} {:<15} {:<10} {:<35}\033[0m".format(
+    print(" \033[30;47m| {:<3} | {:<3}  | {:<30} | {:<15} | {:<12} | {:<10} | {:<15} | {:<10} | {:<35}  \033[0m".format(
         "no","ID", "Plan Name", "Price", "Priority", "Outcome", "Price Level", "Score", "Description                        "
     ))
-    print("-" * 141)
-    for idx, plan in enumerate(sortedArray, 1):
+    print(" " + "-" * 162)
+    for idx, plan in enumerate(globalData, 1):
         desc = plan['planDesc']
         desc_lines = [desc[i:i+30] for i in range(0, len(desc), 30)]
-        price_rupiah = f"Rp{int(plan['planPrice']):,}".replace(",", ".")
+        price_rupiah = f"Rp {int(plan['planPrice']):,}".replace(",", ".")
+        
         if idx == 1:
-            print("\033[102m", end="")  # Set background color to green
-        if idx == 1:
-            print("{:<3} \033[48;5;208m{:<3}\033[102m {:<30} {:<15} {:<12} {:<10} {:<15} {:<10.6f} {:<35}".format(
+            print(" \033[30;102m| {:<3} | \033[30;48;5;208m {:<3}\033[30;102m | {:<30} | {:<15} | {:<12} | {:<10} | {:<15} | {:<10.6f} | {:<35} |".format(
             idx,
             plan['planId'],
             plan['planName'],
@@ -127,7 +144,7 @@ def dataPriorityD():
             desc_lines[0]
             ))
         else:
-            print("{:<3} \033[103m{:<3}\033[0m {:<30} {:<15} {:<12} {:<10} {:<15} {:<10.6f} {:<35}".format(
+            print(" | {:<3} | \033[30;103m {:<3}\033[0m | {:<30} | {:<15} | {:<12} | {:<10} | {:<15} | {:<10.6f} | {:<35} |".format(
             idx,
             plan['planId'],
             plan['planName'],
@@ -141,15 +158,15 @@ def dataPriorityD():
         if idx == 1:
             print("\033[0m", end="")   # Reset text color
         for cont_line in desc_lines[1:]:
-            print("{:<3} {:<3} {:<30} {:<15} {:<12} {:<10} {:<15} {:<10} {:<30}".format(
+            print(" | {:<3} | \033[30;103m {:<3}\033[0m | {:<30} | {:<15} | {:<12} | {:<10} | {:<15} | {:<10} | {:<35} | ".format(
                 '', '','', '', '', '', '', '', cont_line
             ))
 
 
-    print("-" * 141)
+    print(" " + "-" * 162)
 
 def editPlanData():
-    dataPriorityD()
+    viewAllPlan()
     isDataFounded = False
     inputID = str(input("Which ID you want to Edit : "))
     for id in planData:
@@ -164,7 +181,7 @@ def editPlanData():
 def viewOnePlan(id):
     for plan in globalData:
         if str(plan['planId']) == str(id):
-            print (plan['planName'])
+            print ("\033[31mPLAN NAME : ", plan['planName'],"\033[0m")
             print ("-" * 40)
             print ("|->Description    : ",plan['planDesc'])
             print ("|->Price          : ",plan['planPrice'])
@@ -194,27 +211,60 @@ def editMenu(id):
             +----------------------------------------------+
             """)
             inputChoose = str(input("Choose an option = "))
+
             match inputChoose :
+
                 case "1" :
-                    userInput = str(input("Change Plan Name Into :"))
+                    userInput = str(input("Change Plan Name Into : "))
                     planData[id]["planName"] = userInput
+
                 case "2" :
-                    userInput = int(input("Change Plan Price Into :"))
-                    planData[id]["planPrice"] = userInput
+                    while True :
+                        try:
+                            userInput = int(input("Change Plan Price Into : "))
+                            planData[id]["planPrice"] = userInput
+                            break
+                        except ValueError:
+                            print("err 3.2 Value Error")
+
                 case "3" :
-                    userInput = str(input("Change Plan Description Into :"))
+                    userInput = str(input("Change Plan Description Into : "))
                     planData[id]["planDesc"] = userInput
+
                 case "4" :
-                    userInput = str(input("Change Plan Priority Value Into :"))
-                    planData[id]["planPrioritize"] = userInput
+                    while True :
+                        try:
+                            while True :
+                                userInput = int(input("Change Plan Priority Value Into : "))
+                                if 0 < userInput <= 10: 
+                                    planData[id]["planPrioritize"] = userInput
+                                    break
+                                else :
+                                    print("Value Error Choose Between 1 - 10")
+                            break
+                        except ValueError:
+                            print("err 3.2 Value Error")
                 case "5" :
-                    userInput = str(input("Change Plan Outcome Value Into :"))
-                    planData[id]["planOutcome"] = userInput
+                    while True :
+                        try:
+                            while True :
+                                userInput = int(input("Change Plan Outcome Value Into :" ))
+                                if 0 < userInput <= 10: 
+                                    planData[id]["planOutcome"] = userInput
+                                    break
+                                else :
+                                    print("Value Error Choose Between 1 - 10")
+                            break
+                        except ValueError:
+                            print("err 3.2 Value Error")
+
                 case "6" :
                     break
+
                 case _ :
                     print("No Option")
 
+            print("The Data Has Been Saved Successfully\n")
             pause()
             saveData()
 

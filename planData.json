@@ -1,20 +1,20 @@
 {
     "0": {
-        "planName": "alsldladl",
+        "planName": "Plan Satu",
         "planDesc": "koe",
         "planPrice": 100000,
-        "planPrioritize": 10,
+        "planPrioritize": 4,
         "planOutcome": 10
     },
     "1": {
-        "planName": "KOntoru",
-        "planDesc": "Halo",
+        "planName": "1",
+        "planDesc": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
         "planPrice": 12000000,
-        "planPrioritize": "8",
+        "planPrioritize": 10,
         "planOutcome": "4"
     },
     "2": {
-        "planName": "gamma",
+        "planName": "Not Gemoy",
         "planDesc": "desc 2",
         "planPrice": 12000000,
         "planPrioritize": 10,
@@ -22,10 +22,10 @@
     },
     "3": {
         "planName": "delta",
-        "planDesc": "desc 3",
-        "planPrice": 234567,
-        "planPrioritize": 2,
-        "planOutcome": 2
+        "planDesc": "3",
+        "planPrice": 100000000,
+        "planPrioritize": 10,
+        "planOutcome": 10
     },
     "4": {
         "planName": "epsilon",

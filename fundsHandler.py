@@ -220,6 +220,13 @@ def viewAllData():
         print("->Source of Fund #" , i)
         viewData(item)
 
+def countAllFundAvaiable():
+    totalFund = 0
+    for i in dataSoF:
+        totalFund += dataSoF[i]["currentFund"]
+    return totalFund
+
+
 def viewData(item):
         w = 70
         print("+-------------------------------------------------------------------+")
