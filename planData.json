@@ -6,13 +6,6 @@
         "planPrioritize": 4,
         "planOutcome": 10
     },
-    "1": {
-        "planName": "1",
-        "planDesc": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
-        "planPrice": 12000000,
-        "planPrioritize": 10,
-        "planOutcome": "4"
-    },
     "2": {
         "planName": "Not Gemoy",
         "planDesc": "desc 2",
@@ -40,13 +33,6 @@
         "planPrice": 765432,
         "planPrioritize": 5,
         "planOutcome": 5
-    },
-    "6": {
-        "planName": "eta",
-        "planDesc": "desc 6",
-        "planPrice": 3456789,
-        "planPrioritize": 3,
-        "planOutcome": 2
     },
     "7": {
         "planName": "theta",

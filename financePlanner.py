@@ -192,6 +192,26 @@ def viewOnePlan(id):
             print("Price Level : ", plan["planPriceLevel"])
             print("Final Score : ",plan["finalScore"])
 
+def deletePlan():
+    dataPriorityD()
+    viewAllPlan()
+    while True:
+        print("Which One You Want to Delete? (Type 'cancel' to cancel)")
+        deleteData = str(input("ID to Delete : "))
+        if deleteData in planData:
+            confirmation = input(f"are you sure you want to delete {planData[deleteData]["planName"]} ? (y/n) : ").strip().lower()
+            if confirmation == 'y':
+                planData.pop(deleteData, None)
+                saveData()
+                break
+            else:
+                print("The Deletion has been cancelled successfully")
+                pause()
+                break
+        else:
+            print("No such ID found.\n")
+            pause()
+
 def editMenu(id):
         while True:
             dataPriorityD()

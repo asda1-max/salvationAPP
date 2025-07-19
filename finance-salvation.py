@@ -27,7 +27,9 @@ def main():
           | Menu :                                       |
           |             1. Source of Funds               |
           |             2. Finance Planner               |
-          |             3. Exit                          |
+          |             3. Income and Outcome            |
+          |             4. Copyright                     |
+          |             5. Exit                          |
           +----------------------------------------------+
               
          """)
@@ -115,7 +117,7 @@ def fplanner():
             case '3':
                 financePlanner.editPlanData()
             case '4':
-                financePlanner.dataPriorityD()
+                financePlanner.deletePlan()
             case '5':
                 break
             case _ :
