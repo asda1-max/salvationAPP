@@ -1,58 +1,16 @@
 {
     "0": {
-        "planName": "Plan Satu",
-        "planDesc": "koe",
-        "planPrice": 100000,
-        "planPrioritize": 4,
-        "planOutcome": 10
-    },
-    "2": {
-        "planName": "Not Gemoy",
-        "planDesc": "desc 2",
-        "planPrice": 12000000,
-        "planPrioritize": 10,
-        "planOutcome": 10
-    },
-    "3": {
-        "planName": "delta",
-        "planDesc": "3",
-        "planPrice": 100000000,
-        "planPrioritize": 10,
-        "planOutcome": 10
-    },
-    "4": {
-        "planName": "epsilon",
-        "planDesc": "desc 4",
-        "planPrice": 9876543,
-        "planPrioritize": 10,
-        "planOutcome": 10
-    },
-    "5": {
-        "planName": "zeta",
-        "planDesc": "desc 5",
-        "planPrice": 765432,
-        "planPrioritize": 5,
+        "planName": "Beli Jam Tangan Baru",
+        "planDesc": "Casio A500WA-7DF",
+        "planPrice": 502000,
+        "planPrioritize": 7,
         "planOutcome": 5
     },
-    "7": {
-        "planName": "theta",
-        "planDesc": "desc 7",
-        "planPrice": 4567890,
-        "planPrioritize": 4,
-        "planOutcome": 3
-    },
-    "8": {
-        "planName": "iota",
-        "planDesc": "desc 8",
-        "planPrice": 6789012,
-        "planPrioritize": 6,
-        "planOutcome": 4
-    },
-    "9": {
-        "planName": "kappa",
-        "planDesc": "desc 9",
-        "planPrice": 1000,
-        "planPrioritize": 1,
-        "planOutcome": 2
+    "1": {
+        "planName": "Beli Keyboard",
+        "planDesc": "Belum Nemu Kandidat",
+        "planPrice": 650000,
+        "planPrioritize": 8,
+        "planOutcome": 8
     }
 }

@@ -1,6 +1,8 @@
 import os
 import fundsHandler
+import IOArchive
 import financePlanner
+from CopyrightLicence import copyright
 
 def main():
     while True:
@@ -41,6 +43,11 @@ def main():
             case '2':
                 fplanner()
             case '3':
+                ioArchive()
+            case '4':
+                copyright()
+                pause()
+            case '5':
                 exit()
             case _ :
                 print("no option found\n")
@@ -127,6 +134,35 @@ def fplanner():
 def pause():
     input("\npress space to continue")
 
+
+def ioArchive():
+    while True:
+        IOArchive.loadData()
+        os.system('cls' if os.name == 'nt' else 'clear')
+        totalFund = fundsHandler.countAllFundAvaiable()
+        print(f"\033[91mYour Current Fund = {totalFund}\033[0m")
+        print(r"""
+          +----------------------------------------------+
+          | Income and Outcome Archive menu :            | 
+          +----------------------------------------------+
+          | Menu :                                       |
+          |            1. Add An Income                  |
+          |            2. Add An Outcome                 | 
+          |            3. Exit                           | 
+          +----------------------------------------------+
+        """)
+        pilih = input("Choose an Option = > ")
+        os.system('cls' if os.name == 'nt' else 'clear')
+        match pilih:
+            case '1':
+                IOArchive.addAnIncome()
+            case '2':
+                IOArchive.addAnOutcome()
+            case '3':
+                break
+            case _ :
+                    print("no option found\n")
+                    pause()
 
 if __name__ == "__main__":
     main()

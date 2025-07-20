@@ -31,6 +31,11 @@ def searchSoF():
     if findData == False:
         print ("No Such ID \n")
 
+def reduceFund(id,amount):
+    dataSoF[id]["currentFund"] -= amount
+def addFund(id,amount):
+    dataSoF[id]["currentFund"] += amount
+
 def editSoF(id):
     while True :
         print("You Are Editting Funds of : "+dataSoF[id]["SoFName"])

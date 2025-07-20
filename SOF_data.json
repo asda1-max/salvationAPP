@@ -1,16 +1,30 @@
 {
-    "1002": {
+    "1000": {
+        "SoFName": "Bank BNI",
+        "typeSoFName": "Debit Card",
+        "ownerSoF": "Rakha Taufiqurrahman Faisal Aziz",
+        "detailSoF": "-",
+        "currentFund": 2289557
+    },
+    "1001": {
         "SoFName": "Bank Mandiri",
         "typeSoFName": "Debit Card",
-        "ownerSoF": "Rakha Taufiqurrahman Faisal Azizaasdasdad",
+        "ownerSoF": "Rakha Taufiqurrahman Faisal Aziz",
         "detailSoF": "-",
-        "currentFund": 10000000
+        "currentFund": 100000
+    },
+    "1002": {
+        "SoFName": "Line Bank",
+        "typeSoFName": "Debit Card",
+        "ownerSoF": "Rakha Taufiqurrahman Faisal Aziz",
+        "detailSoF": "-",
+        "currentFund": 11073
     },
     "1003": {
-        "SoFName": "Bank Mandiri",
-        "typeSoFName": "Debit Card",
-        "ownerSoF": "Rakha Taufiqurrahman Faisal Azizaasdasdad",
-        "detailSoF": "-",
-        "currentFund": 400000000
+        "SoFName": "Dompet",
+        "typeSoFName": "Money",
+        "ownerSoF": "Rakha Taufiqurrahman Faisal Aziz",
+        "detailSoF": "Cash",
+        "currentFund": 399987
     }
 }
