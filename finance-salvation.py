@@ -148,7 +148,8 @@ def ioArchive():
           | Menu :                                       |
           |            1. Add An Income                  |
           |            2. Add An Outcome                 | 
-          |            3. Exit                           | 
+          |            3. View History                   | 
+          |            4. Exit                           | 
           +----------------------------------------------+
         """)
         pilih = input("Choose an Option = > ")
@@ -159,6 +160,44 @@ def ioArchive():
             case '2':
                 IOArchive.addAnOutcome()
             case '3':
+                history()
+                pause()
+            case '4':
+                break
+            case _ :
+                    print("no option found\n")
+                    pause()
+
+def history():
+    while True:
+        IOArchive.loadData()
+        os.system('cls' if os.name == 'nt' else 'clear')
+        totalFund = fundsHandler.countAllFundAvaiable()
+        print(f"\033[91mYour Current Fund = {totalFund}\033[0m")
+        print(r"""
+          +----------------------------------------------+
+          | Income and Outcome Archive menu :            | 
+          +----------------------------------------------+
+          | Menu :                                       |
+          |            1. History by Month               |
+          |            2. History by Year                | 
+          |            3. All Time History               | 
+          |            4. Exit                           | 
+          +----------------------------------------------+
+        """)
+        pilih = input("Choose an Option = > ")
+        os.system('cls' if os.name == 'nt' else 'clear')
+        match pilih:
+            case '1':
+                IOArchive.historyMonth()
+                pause()
+            case '2':
+                IOArchive.historyYear()
+                pause()
+            case '3':
+                IOArchive.historyAll()
+                pause()
+            case '4':
                 break
             case _ :
                     print("no option found\n")

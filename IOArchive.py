@@ -5,6 +5,80 @@ from datetime import datetime, timedelta
 
 ioHistory = {}
 
+def historyMonth():
+    totalI = 0
+    totalO = 0
+    while True:
+        curmonth =  input("Enter the month (YYYY-MM): ")
+        if len(curmonth) == 7 and curmonth[:4].isdigit() and curmonth[5:7].isdigit() and curmonth[4] == '-':
+            break
+        else:
+            print("Invalid format. Please enter the year in YYYY format.")
+    for i in ioHistory:
+        if ioHistory[i]["inputTime"].startswith(curmonth):
+            if ioHistory[i]["inputType"] == "Income":
+                totalI += int(ioHistory[i]["inputAmount"].replace("Rp", "").replace(".", "").replace("-", "").strip())
+                
+            if ioHistory[i]["inputType"] == "Outcome":
+                totalO -= int(ioHistory[i]["inputAmount"].replace("Rp", "").replace(".", "").replace("-", "").strip())
+
+            viewIO(i)
+    w = 40
+    wLI = w - len("{:,}".format(totalI).replace(",", "."))
+    wLO = w - len("{:,}".format(totalO * -1).replace(",", "."))
+    print("\n\033[42m\033[97m Total Income  : Rp {:,}".format(totalI).replace(",", ".") + " " * wLI + "\033[0m")
+    print("\033[41m\033[30m Total Outcome : Rp {:,}".format(totalO * -1).replace(",", ".") + " " * wLO + "\033[0m")
+
+def historyYear():
+    totalI = 0
+    totalO = 0
+    while True:
+        curyear = input("Enter the year (YYYY): ")
+        if len(curyear) == 4 and curyear.isdigit():
+            break
+        else:
+            print("Invalid format. Please enter the year in YYYY format.")
+    for i in ioHistory:
+        if ioHistory[i]["inputTime"].startswith(curyear):
+            if ioHistory[i]["inputType"] == "Income":
+                totalI += int(ioHistory[i]["inputAmount"].replace("Rp", "").replace(".", "").replace("-", "").strip())
+                
+            if ioHistory[i]["inputType"] == "Outcome":
+                totalO -= int(ioHistory[i]["inputAmount"].replace("Rp", "").replace(".", "").replace("-", "").strip())
+
+            viewIO(i)
+    w = 40
+    wLI = w - len("{:,}".format(totalI).replace(",", "."))
+    wLO = w - len("{:,}".format(totalO * -1).replace(",", "."))
+    print("\n\033[42m\033[97m Total Income  : Rp {:,}".format(totalI).replace(",", ".") + " " * wLI + "\033[0m")
+    print("\033[41m\033[30m Total Outcome : Rp {:,}".format(totalO * -1).replace(",", ".") + " " * wLO + "\033[0m")
+
+def historyAll():
+    totalI = 0
+    totalO = 0
+    for i in ioHistory:
+        if ioHistory[i]["inputType"] == "Income":
+            totalI += int(ioHistory[i]["inputAmount"].replace("Rp", "").replace(".", "").replace("-", "").strip())
+                
+        if ioHistory[i]["inputType"] == "Outcome":
+            totalO -= int(ioHistory[i]["inputAmount"].replace("Rp", "").replace(".", "").replace("-", "").strip())
+
+        viewIO(i)
+    w = 40
+    wLI = w - len("{:,}".format(totalI).replace(",", "."))
+    wLO = w - len("{:,}".format(totalO * -1).replace(",", "."))
+    print("\n\033[42m\033[97m Total Income  : Rp {:,}".format(totalI).replace(",", ".") + " " * wLI + "\033[0m")
+    print("\033[41m\033[30m Total Outcome : Rp {:,}".format(totalO * -1).replace(",", ".") + " " * wLO + "\033[0m")
+
+
+def viewIO(id):
+    if ioHistory[id]["inputType"] == "Income":
+        print(f"\033[92mthere's an {ioHistory[id]['inputType']} on {ioHistory[id]['inputTime']}\033[0m")
+        print(f"\033[92m|-> {ioHistory[id]['inputAmount']}\033[0m")
+    else:
+        print(f"\033[91mthere's an {ioHistory[id]['inputType']} on {ioHistory[id]['inputTime']}\033[0m")
+        print(f"\033[91m|-> {ioHistory[id]['inputAmount']}\033[0m")
+    
 def addAnOutcome():
     inputName = input("Outcome Name : ")
     inputDesc = input("Outcome Description : ")
